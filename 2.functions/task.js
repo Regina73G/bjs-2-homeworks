@@ -61,10 +61,19 @@ function averageEvenElementsWorker(...arr) {
       countEvenElement ++;
     }
   }
-  
+
   return sumEvenElement / countEvenElement;
 }
 
 function makeWork (arrOfArr, func) {
+  let maxWorkerResult = -Infinity;
+  for (let i = 0; i < arrOfArr.length; i++) {
+    const currentArr =  arrOfArr[i];
+    const currentResult = func(...currentArr);
+    if (currentResult > maxWorkerResult) {
+      maxWorkerResult = currentResult;
+    }
+  }
 
+  return maxWorkerResult;
 }
