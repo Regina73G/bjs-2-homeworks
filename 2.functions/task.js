@@ -7,8 +7,9 @@ function getArrayParams(...arr) {
       max = arr[i];
     } else if (arr[i] < min) {
       min = arr[i];
-    };
-    sum = sum + arr[i];
+    }
+
+    sum += arr[i];
   }
 
   const avg = Number((sum / arr.length).toFixed(2));
