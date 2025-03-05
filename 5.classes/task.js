@@ -83,6 +83,7 @@ class Library {
         return book;
       }
     }
+
     return null;
   }
 
@@ -93,8 +94,50 @@ class Library {
         return removed;
       }
     }
+
     return null;
   }
 }
 
 // Задание 3
+
+class Student {
+  constructor(name) {
+    this.name = name;
+    this.marks = {};
+  }
+
+  addMark(mark, subjectName) {
+    if (mark < 2 || mark > 5) {
+      return;
+    }
+
+    if (!this.marks.hasOwnProperty(subjectName)) {
+      this.marks[subjectName] = [];
+    }
+
+    this.marks[subjectName].push(mark);
+  }
+
+  getAverageBySubject(subjectName) {
+    if (!this.marks.hasOwnProperty(subjectName) || this.marks[subjectName].length === 0) {
+      return 0;
+    }
+
+    return this.marks[subjectName].reduce((accumulator, currentValue) => accumulator + currentValue, 0) / this.marks[subjectName].length;
+  }
+
+  getAverage() {
+    const subjects = Object.keys(this.marks);
+    if(subjects.length === 0) {
+      return 0;
+    }
+
+    const sum = [];
+    for (let i = 0; i < subjects.length; i++) {
+      sum.push(this.getAverageBySubject(subjects[i]));
+    }
+
+    return sum.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / sum.length;
+  }
+}
