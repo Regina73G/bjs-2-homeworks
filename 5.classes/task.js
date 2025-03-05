@@ -99,6 +99,39 @@ class Library {
   }
 }
 
+// Тестовый сценарий
+
+const LibraryFour = new Library("Библиотека №4");
+
+const theWitcher = new FantasticBook("Анджей Сапковский", "Ведьмак. Дорога без возврата", 2024, 352);
+LibraryFour.addBook(theWitcher);
+LibraryFour.addBook(new FantasticBook("Джоан Роулинг", "Гарри Поттер и Тайная комната",2013, 480));
+LibraryFour.addBook(new DetectiveBook("Артур Дойл", "Приключения Шерлока Холмса", 2025, 512));
+LibraryFour.addBook(new Magazine("Журнал Наука и Жизнь", 2025, 142));
+
+console.log(LibraryFour.findBookBy("releaseDate", 1919)); // Поиск. Книги нет
+const theMoonAndThePenny = new NovelBook("Моэм Сомерсет","Луна и грош", 1919, 288);
+LibraryFour.addBook(theMoonAndThePenny);
+console.log(LibraryFour.findBookBy("releaseDate", 1919)); // Поиск. Ок
+
+console.log("Количество книг до выдачи: " + LibraryFour.books.length);
+LibraryFour.giveBookByName("Ведьмак. Дорога без возврата"); // Выдача
+console.log("Количество книг после выдачи: " + LibraryFour.books.length);
+console.log(LibraryFour.findBookBy("name", "Ведьмак. Дорога без возврата")); // Поиск выданной книги. Книги нет
+
+theWitcher.state = 15; // Повредила книгу
+console.log(theWitcher.state);
+
+theWitcher.fix();
+console.log(theWitcher.state); // 22.5
+LibraryFour.addBook(theWitcher); // Снова пытаюсь добавить
+console.log(LibraryFour.findBookBy("name", "Ведьмак. Дорога без возврата"));
+theWitcher.fix();
+console.log(theWitcher.state); //  33.75
+LibraryFour.addBook(theWitcher); // Снова пытаюсь добавить
+console.log(LibraryFour.findBookBy("name", "Ведьмак. Дорога без возврата")); // Добавила 
+console.log(LibraryFour);
+
 // Задание 3
 
 class Student {
